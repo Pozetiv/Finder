@@ -1,0 +1,76 @@
+<%= simple_form_for(@post) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+    <div class="field">
+      <div class="control">
+        <%= f.input :title, required: true, input_html: { class: 'input' }, wrapper: false, label_html: { class: 'label' }, placeholder: 'Dev.Op, Driver, so on' %>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control">
+        <%= f.input :description, required: true, input_html: { class: 'textarea' }, wrapper: false, label_html: { class: 'label' }, placeholder: 'Some word about job' %>
+      </div>
+    </div>
+
+    <div class="columns">
+      <div class="filed column is-4">
+        <div class="control">
+        <label class="label">Job Type:</label>
+        <div class="control has-icons-left">
+          <span class="select">
+            <%= f.input :job_type, collection: Post::JOB_TYPES, promt: 'Select type Job', wrapper: false, label: false, prompt: "Select type" %>
+          </span>
+          <span class="icon is-small is-left">
+            <i class="fa fa-briefcase"></i>
+          </span>
+        </div>
+      </div>
+    </div>
+
+    <div class="field column is-6">
+      <div class="control">
+        <%= f.input :location, required: true, input_html: { class: 'input' }, wrapper: false, label_html: { class: 'label' }, hint: 'Example: New York city' %>
+      </div>
+      <div class="field">
+        <div class="control">
+          <%= f.input :remote_ok, as: :boolean, wrapper: false, input_html: { class: 'checkbox' }, label: false %>
+            Work can be done remote?
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="columns">
+    <div class="field column is-4">
+      <div class="control">
+        <%= f.input :job_author, required: true, input_html: { class: 'input' }, wrapper: false, label: 'Company', label_html: { class: 'label' }  %>
+      </div>
+    </div>
+
+    <div class="field column is-4">
+      <div class="control">
+        <%= f.input :url, as: :url, required: true, input_html: { class: 'input' }, wrapper: false, label_html: { class: 'label' }, placeholder: 'http://www.company.com' %>
+      </div>
+    </div>
+  </div>
+
+  <div class="file is-boxed">
+    <label class="file-label">
+      <%= f.input :image, as: :file, wrapper: false, label: false, label_html: { class: 'file-label'}, input_html: { class: 'file-input' }%>
+      <span class="file-cta">
+        <span class="file-icon">
+          <i class="fas fa-upload"></i>
+        </span>
+        <span class="file-label">
+          Choose a file…
+        </span>
+      </span>
+    </label>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, class: 'button is-primary' %>
+  </div>
+<% end %>
