@@ -1,0 +1,29 @@
+<div class="tile is-ancestor">
+  <div class="tile is-parent is-9">
+    <article class="tile is-child box">
+      <p class="title"> <%= @post.title %> </p>
+      <p class="subtitle">Description:</p>
+        <%= @post.description %>
+    </article>
+  </div>
+  <div class="tile is-parent is-3">
+    <article class="tile is-child box">
+      <%= image_tag @post.image.url(:thumb) if @post.image? %>
+      <br>
+      Company: <%= @post.job_author %>
+      <br>
+      Location: <%= @post.location %>
+      <% if @post.url? %>
+        <br>
+        Url: <%= @post.url %>
+         <%= job_type(@post) %>
+      <% end %>
+    </article>
+  </div>
+</div>
+  <div>
+    <% if object_owner(@post) %>
+      <%= link_to 'Edit', edit_post_path(@post), class: 'button' %>
+      <%= link_to 'Back', posts_path, class: 'button ' %>
+    <% end %>
+  </div>

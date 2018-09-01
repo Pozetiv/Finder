@@ -7,9 +7,34 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
   </head>
-
   <body>
-    <%= yield %>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <div class="navbar-item">
+          <%= link_to 'Finder', root_path %>
+        </div>
+      </div>
+      <div class="navbar-menu">
+       <div class="navbar-end">
+         <div class="navbar-item">
+          <%= link_to 'Created new Post', new_post_path, class: 'button' %>
+          <% if user_signed_in? %>
+            <%= link_to 'Logout',  destroy_user_session_path, method: :delete, class: 'button' %>
+            <% else %>
+           <%= link_to 'SIGN IN', new_user_registration_path, class: 'button' %>
+           <% end %>
+         </div>
+       </div>
+      </div>
+      </nav>
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container">
+            <%= yield %>
+        </div>
+      </div>
+    </section>
   </body>
 </html>
