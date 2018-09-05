@@ -1,16 +1,25 @@
 <p id="notice"><%= notice %></p>
-<% if @posts.empty? %>
-  Don't find posts
-<%else%>
-  <% @posts.each do |post| %>
-  <section class="section">
-    <div class="container">
-      <h1 class="title"><%= link_to post.title, post_path(post) %></h1>
-      <b>Company:</b> <%= post.job_author %> | <b>Location:</b> <%= post.location %> |  <%= job_type(post) %>
-      <br>
-      Published: <%= created_at(post) %>
-      </div>
-    </div>
-  </section>
-  <%end%>
-<%end%>
+<div class="columns">
+  <div class="column is-2">
+    <%= render 'search_form'%>
+  </div>
+  <div class="column is-10">
+    <% if @posts.empty? %>
+      Don't find posts
+      <% else %>
+        <% @posts.each do |post| %>
+          <section class="section">
+            <div class="container">
+              <h1 class="title">
+                <%= link_to post.title, post_path(post) %>
+              </h1>
+              <b>Company:</b> <%= post.job_author %> | <b>Location:</b> <%= post.location %> |
+                  <%= job_type(post) %>
+                    <br> Published: <%= created_at(post) %>
+            </div>
+          </section>
+          <% end %>
+        <% end %>
+  </div>
+</div>
+
