@@ -1,0 +1,8 @@
+<% @applies.each do |post| %>
+<%= link_to post.title, post_path(post) %>
+OK's - <%= post.applies.count %>
+<% post.applies.each do |pp| %>
+  <%= pp.user.email %>
+  <%end%>
+  <br>
+<%end%>

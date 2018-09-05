@@ -25,5 +25,8 @@
     <% if object_owner(@post) %>
       <%= link_to 'Edit', edit_post_path(@post), class: 'button' %>
       <%= link_to 'Back', posts_path, class: 'button ' %>
+    <% else %>
+
+    <%= button_to 'Apply', applies_path, params: { post_id: @post.id }, class: 'button is-fullwidth is-primary' %>
     <% end %>
   </div>

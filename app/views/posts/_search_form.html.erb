@@ -1,0 +1,29 @@
+<%= simple_form_for( :search, method: :get, url: posts_path ) do |f| %>
+  <div class="field">
+    <div class="control">
+      <%=f.input :text_field, input_html: { class: 'input' }, wrapper: false, placeholder: 'Search ...', label: false %>
+    </div>
+  </div>
+
+  <div class="columns">
+    <div class="field column is-8">
+      <div class="control">
+        <label class="label">Job Type:</label>
+        <div class="control has-icons-left">
+          <span class="select">
+            <%= f.input :job_type, collection: Post::JOB_TYPES, promt: 'Select type Job', wrapper: false, label: false, prompt: "Select type" %>
+          </span>
+          <span class="icon is-small is-left">
+            <i class="fa fa-briefcase"></i>
+          </span>
+        </div>
+      </div>
+
+      <div class="field column is-4">
+      <div class="control">
+        <label class="label">Remote?</label>
+            <%= f.input :remote_ok, as: :boolean, wrapper: false, label: false %>
+      </div>
+  </div>
+    <%= f.button :submit, 'Search',class: 'button' %>
+    <% end %>

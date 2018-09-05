@@ -1,0 +1,30 @@
+<% if current_user.applies.any? %>
+ <table class="table">
+  <thead>
+    <tr>
+      <th><abbr>Title</abbr></th>
+      <th><abbr>Company name</abbr></th>
+      <th><abbr title="Link to company site">URL</abbr></th>
+      <th><abbr>Job Type</abbr></th>
+      <th><abbr>Location</abbr></th>
+      <th><abbr>Published</abbr></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @applies.each do |apply| %>
+    <tr>
+      <td><%= link_to "#{apply.post.title}",  post_path(apply.post) %></td>
+      <td><%= apply.post.job_author %></td>
+      <td><%= apply.post.url %></td>
+      <td><%= apply.post.job_type %></td>
+      <td><%= apply.post.location %></td>
+      <td><%= created_at(apply.post) %></td>
+      <td><%= link_to "Delete from you list", apply_path(apply), method: :delete, class: 'button' %></td>
+    </tr>
+    <%end%>
+  </tbody>
+</table>
+<% else %>
+  <h3 class="subtitle is-3"> You don't have any applies </h3>
+<% end %>
