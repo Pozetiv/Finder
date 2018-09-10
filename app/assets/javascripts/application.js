@@ -15,3 +15,11 @@
 //= require turbolinks
 //= require_tree .
 //= require jquery
+
+
+$(document).ready( function () {
+  $(".dropdown").click( function () {
+    $(this).toggleClass( "is-active" );
+  });
+});
+
