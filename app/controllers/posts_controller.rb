@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :owner?, only: [:edit, :update, :destroy]
 
   def index
    params[:search].present? ? @posts = Post.search(params[:search]) : @posts ||= Post.all
@@ -52,10 +53,18 @@ class PostsController < ApplicationController
   private
 
     def set_post
-      @post = Post.find(params[:id])
+      @post = Post.friendly.find(params[:id])
     end
 
     def post_params
       params.require(:post).permit(:title, :description, :url, :job_type, :remote_ok, :location, :job_author, :image, :search)
     end
+
+     def owner?
+    unless @post.user_id == current_user.id || current_user.admin? == true
+      flash[:info] = "Sorry you can't do this."
+      redirect_to root_path
+    end
+  end
+
 end

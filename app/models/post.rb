@@ -1,4 +1,6 @@
 class Post < ApplicationRecord
+  extend FriendlyId
+
   default_scope { order(created_at: :desc) }
   scope :by_job_type, -> (params)   { where( "job_type = ?", params ) if params.present? }
   scope :by_location, -> (location) { where( "location LIKE ?", "%#{location}" ) if location.present? }
@@ -18,7 +20,9 @@ class Post < ApplicationRecord
 
   mount_uploader :image, ImageUploader
 
- JOB_TYPES = ["Full-Time", "Part-Time", "Contract", "Freelance"]
+  friendly_id :title
+
+  JOB_TYPES = ["Full-Time", "Part-Time", "Contract", "Freelance"]
 
   def self.search(params)
     self.by_job_type(params[:job_type]).by_location(params[:text_field])
