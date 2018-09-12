@@ -22,11 +22,21 @@
   </div>
 </div>
   <div>
+    <%= link_to 'Back', posts_path, class: 'button ' %>
     <% if object_owner(@post) %>
       <%= link_to 'Edit', edit_post_path(@post), class: 'button' %>
-      <%= link_to 'Back', posts_path, class: 'button ' %>
+      <%= link_to 'Delete', post_path(@post), method: :delete, class: 'button', confirm: { data: 'Delete?' } %>
     <% else %>
-
-    <%= button_to 'Apply', applies_path, params: { post_id: @post.id }, class: 'button is-fullwidth is-primary' %>
+      <%= button_to 'Apply', applies_path, params: { post_id: @post.id }, class: 'button is-fullwidth is-primary' %>
     <% end %>
   </div>
+    <section class="section">
+      <% if user_signed_in? %>
+        <h2 class="title"> Create new message </h2>
+        <%= render 'comments/form' %>
+        <% else %>
+            <%= link_to "Writted commet",  new_user_session_path, class: 'button'%>
+      <% end %>
+    </section>
+
+<%= render "comments/index", locals: { commentable: @post }  %>

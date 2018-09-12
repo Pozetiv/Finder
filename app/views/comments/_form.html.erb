@@ -1,0 +1,10 @@
+<%= simple_form_for([@commentable, Comment.new]) do |f|%>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+  <div class="field">
+    <div class="control">
+      <%= f.input :body, as: :text, input_html: { class: 'textarea' }, wrapper: false, placeholder: 'Text ...' %>
+    </div>
+  </div>
+  <%= f.button :submit, class: 'button' %>
+<% end %>

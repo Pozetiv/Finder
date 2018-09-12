@@ -7,7 +7,10 @@ class PostsController < ApplicationController
    params[:search].present? ? @posts = Post.search(params[:search]) : @posts ||= Post.all
   end
 
-  def show; end
+  def show
+    @commentable = @post
+    @comments = @commentable.comments
+  end
 
   def new
     @post = current_user.posts.build
@@ -60,10 +63,10 @@ class PostsController < ApplicationController
       params.require(:post).permit(:title, :description, :url, :job_type, :remote_ok, :location, :job_author, :image, :search)
     end
 
-     def owner?
-    unless @post.user_id == current_user.id || current_user.admin? == true
-      flash[:info] = "Sorry you can't do this."
-      redirect_to root_path
+    def owner?
+      unless @post.user == current_user || current_user.admin? == true
+        flash[:info] = "Sorry you can't do this."
+        redirect_to @post
     end
   end
 

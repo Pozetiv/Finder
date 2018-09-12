@@ -1,0 +1,43 @@
+ <% @comments.each do |comment| %>
+  <div class="box">
+    <article class="media">
+      <div class="media-left">
+        <figure class="image is-64x64">
+          <img src="https://bulma.io/images/placeholders/128x128.png" alt="Image">
+        </figure>
+      </div>
+      <div class="media-content">
+        <div class="content">
+          <p>
+            <strong><%= comment.user.email %></strong> <small>Written: <%=time_ago_in_words(comment.created_at)%></small>
+            <br>
+            <%= comment.body %>
+          </p>
+        </div>
+        <nav class="level is-mobile">
+          <div class="level-left">
+            <a class="level-item" aria-label="reply">
+              <span class="icon is-small">
+                <i class="fas fa-reply" aria-hidden="true"></i>
+              </span>
+            </a>
+            <a class="level-item" aria-label="retweet">
+              <span class="icon is-small">
+                <i class="fas fa-retweet" aria-hidden="true"></i>
+              </span>
+            </a>
+            <a class="level-item" aria-label="like">
+              <span class="icon is-small">
+                <i class="fas fa-heart" aria-hidden="true"></i>
+              </span>
+            </a>
+            <% if object_owner(comment) %>
+            <%= link_to (content_tag(:span, "", class: "fas fa-trash")).html_safe, post_comment_path(@commentable, comment),
+             method: :delete, data: { confirm: "Do you want destory commet?" } %>
+             <% end %>
+          </div>
+        </nav>
+      </div>
+    </article>
+  </div>
+<% end %>

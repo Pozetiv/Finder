@@ -17,6 +17,7 @@ class Post < ApplicationRecord
 
   belongs_to :user
   has_many :applies
+  has_many :comments, as: :commentable, dependent: :destroy
 
   mount_uploader :image, ImageUploader
 
