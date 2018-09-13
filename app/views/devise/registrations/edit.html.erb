@@ -15,6 +15,18 @@
     <% end %>
     <div class="field">
       <div class="control">
+        <%= f.input :first_name,
+                    input_html: { class: 'input'}, wrapper: false %>
+        </div>
+    </div>
+    <div class="field">
+      <div class="control">
+        <%= f.input :last_name,
+                    input_html: { class: 'input'}, wrapper: false %>
+      </div>
+    </div>
+    <div class="field">
+      <div class="control">
         <%= f.input :password,
                     hint: "leave it blank if you don't want to change it",
                     required: false,
@@ -36,6 +48,12 @@
                     input_html: { autocomplete: "current-password", class: 'input' }, wrapper: false %>
       </div>
     </div>
+
+    <div class="field">
+      <div class="control">
+        <%= f.input :image, as: :file, wrapper: false %>
+      </div>
+  </div>
   </div>
 
   <div class="form-actions">

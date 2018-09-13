@@ -15,34 +15,40 @@
     </div>
     <div class="field">
       <div class="control">
-    <%= f.input :first_name,
-                required: true,
-                input_html: { class: 'input'}, wrapper: false %>
+        <%= f.input :first_name,
+                    required: true,
+                    input_html: { class: 'input'}, wrapper: false %>
         </div>
     </div>
     <div class="field">
       <div class="control">
-    <%= f.input :last_name,
-                required: true,
-                input_html: { class: 'input'}, wrapper: false%>
+        <%= f.input :last_name,
+                    required: true,
+                    input_html: { class: 'input'}, wrapper: false%>
       </div>
     </div>
     <div class="field">
       <div class="control">
-    <%= f.input :password,
-                required: true,
-                hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                input_html: { autocomplete: "new-password",  class: 'input' },
-                wrapper: false %>
+        <%= f.input :password,
+                    required: true,
+                    hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
+                    input_html: { autocomplete: "new-password",  class: 'input' },
+                    wrapper: false %>
       </div>
     </div>
     <div class="field">
       <div class="control">
-    <%= f.input :password_confirmation,
-                required: true,
-                input_html: { autocomplete: "new-password", class: 'input' },
-                wrapper: false %>
+        <%= f.input :password_confirmation,
+                    required: true,
+                    input_html: { autocomplete: "new-password", class: 'input' },
+                    wrapper: false %>
       </div>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="control">
+      <%= f.input :image, as: :file, wrapper: false %>
     </div>
   </div>
 

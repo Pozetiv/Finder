@@ -4,12 +4,12 @@ class PostsController < ApplicationController
   before_action :owner?, only: [:edit, :update, :destroy]
 
   def index
-   params[:search].present? ? @posts = Post.search(params[:search]) : @posts ||= Post.all
+   params[:search].present? ? @posts = Post.search(params[:search]).paginate(:page => params[:page]) : @posts ||= Post.paginate(:page => params[:page])
   end
 
   def show
     @commentable = @post
-    @comments = @commentable.comments
+    @comments = @commentable.comments.paginate(:page => params[:page])
   end
 
   def new
@@ -60,7 +60,7 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:title, :description, :url, :job_type, :remote_ok, :location, :job_author, :image, :search)
+      params.require(:post).permit(:title, :description, :url, :job_type, :remote_ok, :location, :job_author, :image, :image)
     end
 
     def owner?
