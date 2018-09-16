@@ -1,0 +1,44 @@
+<div class="resume">
+  <div class="columns">
+    <div class="column is-5">
+      <%= image_tag @resume.photo.url(:photo) if @resume.photo? %>
+    </div>
+    <div class="column is-7">
+      <h2 class="title is-2"> <%= @resume.first_name %> <%= @resume.last_name %> </h2>
+      <h3 class="subtitle is-3">Position:  <%= @resume.position %> </h3>
+      <%= @resume.body %>
+    </div>
+  </div>
+  <section class="level" id="section_contact">
+    <div class="level-item has-text-centered"> <i class="fas fa-mobile"></i><%= @resume.telefon%>  </div>
+    <div class="level-item has-text-centered"> <i class="fas fa-envelope"></i><%= @resume.email %> </div>
+    <div class="level-item has-text-centered"> <i class="fab fa-linkedin"></i> <%= @resume.linked_in %>  </div>
+    <div class="level-item has-text-centered"> <i class="fas fa-map-marker"></i><%= @resume.location %> </div>
+  </section>
+  <div class="columns">
+    <div class="column is-6 education">
+      <h3 class="subtitle is-3"> Eduucation: </h3>
+        <% @resume.educations.each do |education|%>
+        <div class="education-body">
+          <%= education.academy_name %>
+        <%= span(education) %>
+          <%= education.profession %>
+          <%= education.body %>
+      </div>
+      <% end %>
+  </div>
+    <div class="column is-6 experience">
+      <h3 class="subtitle is-3"> Work experience: </h3>
+      <% @resume.career_summaries.each do |career_summary| %>
+        <div class="experience-body">
+      Experience block
+        <%= career_summary.position %>
+        <%= career_summary.company_name %>
+        <%= career_summary.address %>
+        <%= career_summary.body %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= link_to "Edit resume", edit_resume_path(current_user), class: 'button'%>

@@ -2,12 +2,13 @@ class AppliesController < ApplicationController
    before_action :authenticate_user!
 
   def create
+    post = Post.find(params[:post_id])
     @apply = current_user.applies.create(post_id: params[:post_id])
     if @apply.save
-      post = Post.find(params[:post_id])
       redirect_to post_path(post), success: 'Added new job to list'
     else
       flash.now[:danger] = 'Opps problem... Report this to an administration'
+      redirect_to post_path(post)
     end
   end
 

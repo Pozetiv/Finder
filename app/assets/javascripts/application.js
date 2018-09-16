@@ -15,6 +15,7 @@
 //= require turbolinks
 //= require_tree .
 //= require jquery
+//= require cocoon
 
 
 $(document).ready( function () {

@@ -22,4 +22,9 @@ module ApplicationHelper
     image_tag( 'https://bulma.io/images/placeholders/128x128.png')
   end
  end
+
+ def span(object)
+  finished = object.finished.present? ? ' for now' : object.finished
+  content_tag('p', "#{object.started.strftime("%B, %Y")} - #{finished}", class: 'has-text-grey-light')
+ end
 end

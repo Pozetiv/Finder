@@ -7,10 +7,7 @@ class User < ApplicationRecord
   has_many :posts
   has_many :applies
   has_many :comments, as: :commentable
-
-
-  validates :first_name, presence: true, length: { minimum: 2 }
-  validates :last_name, presence: true, length: { minimum: 2 }
+  has_one  :resume, dependent: :destroy
 
   mount_uploader :image, AvatarUploader
 end

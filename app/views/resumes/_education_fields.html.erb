@@ -1,0 +1,48 @@
+<div class="nested-fields">
+<div class="columns">
+  <div class="field column is-5">
+    <div class="contol">
+    <label class="label">Started:</label>
+    <div class="control has-icons-left">
+          <span class="select">
+      <%= f.input :started, as: :date, wrapper: false, order: [:month, :year],
+          label: false, wrapper: false %>
+          </span>
+          <span class="icon is-small is-left">
+            <i class="fas fa-calendar-alt"></i>
+          </span>
+    </div>
+  </div>
+  </div>
+
+
+
+    <div class="field column is-5">
+      <div class="control">
+        <%= f.input :finished, as: :date, input_html: { class: 'select' }, wrapper: false,
+            order: [:month, :year], label_html: { class: 'label'}  %>
+      </div>
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+      <%= f.input :academy_name, input_html: { class: 'input' }, wrapper: false,
+          label_html: { class: 'label' } %>
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+      <%= f.input :profession, input_html: { class: 'input' }, wrapper: false,
+          label_html: { class: 'label' } %>
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+      <%= f.input :body, as: :text, label_html: { class: 'label' }, input_html: { class: 'textarea' },
+          wrapper: false, label: 'Additional information' %>
+    </div>
+  </div>
+
+  <%= link_to_remove_association "remove Education", f, class: 'button' %>
+</div>
+

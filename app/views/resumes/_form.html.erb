@@ -1,0 +1,92 @@
+<%= simple_form_for(@resume) do |f| %>
+  <%= render 'shared/errors_messages', f: f %>
+<div class="field">
+  <div class="control">
+    <%= f.input :position, input_html: { class: 'input' }, wrapper: false, plaseholder: 'You find position..',
+        label_html: { class: 'label' }, error_html: { class: 'help is-danger' }  %>
+  </div>
+</div>
+<div class="field">
+  <div class="control">
+  <%= f.input :photo, as: :file, wrapper: false %>
+  </div>
+</div>
+<div class="columns">
+  <div class="field column is-6">
+    <div class="control">
+      <%= f.input :first_name, input_html: { class: 'input' }, wrapper: false,
+          label_html: { class: 'label' }, error_html: { class: 'help is-danger' }  %>
+    </div>
+  </div>
+  <div class="field column is-6">
+    <div class="control">
+      <%= f.input :last_name, input_html: { class: 'input' }, wrapper: false,
+          label_html: { class: 'label' }, error_html: { class: 'help is-danger' }  %>
+    </div>
+  </div>
+</div>
+<div class="field" >
+  <div class="control">
+     <%= f.input :location, input_html: { class: 'input' }, wrapper: false, placeholder: 'You find  position in ...',
+        label_html: { class: 'label' }, hint: 'Example: Washington, D.C.',error_html: { class: 'help is-danger' }  %>
+     </div>
+</div>
+<div class="columns">
+  <div class="field column is-4">
+    <div class="control has-icons-left">
+      <span class="icon is-small is-left">
+        <i class="fas fa-user"></i>
+      </span>
+      <%= f.input :telefon, as: :tel, label: false, input_html: { class: 'input' }, wrapper: false,
+          placeholder: 'Contact phone number' %>
+      </div>
+  </div>
+  <div class="field column is-4">
+    <div class="control has-icons-left">
+      <span class="icon is-small is-left">
+        <i class="fas fa-envelope"></i>
+      </span>
+      <%= f.input :email, as: :email, label: false, input_html: { class: 'input' }, wrapper: false,
+          placeholder: 'Contact email', error_html: { class: 'help is-danger' }  %>
+      </div>
+  </div>
+  <div class="field column is-4">
+    <div class="control has-icons-left">
+      <span class="icon is-small is-left">
+        <i class="fab fa-linkedin-in"></i>
+      </span>
+      <%= f.input :linked_in, as: :url, label: false, input_html: { class: 'input' }, wrapper: false,
+          placeholder: 'Link to Linked In profile' %>
+      </div>
+  </div>
+</div>
+<div class="field">
+  <div class="control">
+     <%= f.input :body, as: :text, label: 'About me', input_html: { class: 'textarea' }, wrapper: false,
+     plaseholder: 'Some word about you', label_html: { class: 'label' }, error_html: { class: 'help is-danger' } %>
+     </div>
+</div>
+
+<h3 class="subtitle is-3"> Education: </h3>
+<div id="educations">
+  <%= f.simple_fields_for :educations do |education| %>
+    <%= render 'education_fields', f: education %>
+  <% end %>
+  <div class="links">
+    <%= link_to_add_association 'Add Education', f, :educations, class: 'button' %>
+  </div>
+</div>
+
+<h3 class="subtitle is-3"> Career Summary: </h3>
+<div id='career_summaries'>
+  <%= f.simple_fields_for :career_summaries do |career_summary| %>
+    <%= render 'career_summary_fields', f: career_summary %>
+    <% end %>
+  <div class="links">
+    <%= link_to_add_association 'Add Career_summary', f, :career_summaries, class: 'button'
+     %>
+
+</div>
+<%= f.button :submit, class: 'button is-primary' %>
+<% end %>
+

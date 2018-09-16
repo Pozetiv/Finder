@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_13_083123) do
+ActiveRecord::Schema.define(version: 2018_09_13_201833) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,11 +57,47 @@ ActiveRecord::Schema.define(version: 2018_09_13_083123) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "resume_career_summaries", force: :cascade do |t|
+    t.integer "resume_id"
+    t.string "position"
+    t.string "company_name"
+    t.string "address"
+    t.text "body"
+    t.date "started"
+    t.date "finished"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "resume_educations", force: :cascade do |t|
+    t.integer "resume_id"
+    t.date "started"
+    t.date "finished"
+    t.string "academy_name"
+    t.string "profession"
+    t.text "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "resumes", force: :cascade do |t|
+    t.integer "user_id"
+    t.string "first_name"
+    t.string "last_name"
+    t.string "position"
+    t.string "location"
+    t.integer "telefon"
+    t.string "email"
+    t.text "body"
+    t.string "linked_in"
+    t.string "photo"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
-    t.string "first_name"
-    t.string "last_name"
     t.boolean "admin", default: false
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
@@ -77,4 +113,7 @@ ActiveRecord::Schema.define(version: 2018_09_13_083123) do
   add_foreign_key "applies", "users"
   add_foreign_key "comments", "users"
   add_foreign_key "posts", "users"
+  add_foreign_key "resume_career_summaries", "resumes"
+  add_foreign_key "resume_educations", "resumes"
+  add_foreign_key "resumes", "users"
 end
